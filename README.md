@@ -41,6 +41,10 @@
 - 云端开启后启用融合检索：向量余弦判断准入、重排模型决定排序、词法命中作为兜底
 - 无匹配时返回空结果，并给出「没有匹配的照片」提示
 
+### 版本说明
+
+图库页右上角提供一枚弱化样式的信息图标，点击打开版本说明弹层：版本号、发布日期、更新要点与运行说明。版本号在构建时由 `vite.config.ts` 从 `package.json` 注入（`__APP_VERSION__`），界面与发布版本不会脱节。
+
 ## 技术栈
 
 | 层 | 选型 |
@@ -97,6 +101,9 @@ npm run build
 
 # 单元测试
 npm test
+
+# 由 .cosmocode/docs/产品说明.md 生成同名 HTML 文档
+npm run docs:html
 ```
 
 容器内存受限时，请用生产构建 + 预览（`npm run serve`）进行验收：开发模式的编译与热重载内存峰值明显更高。
@@ -141,6 +148,7 @@ graph TD
 │   │   ├── Slideshow.tsx     # 幻灯片与背景音乐面板
 │   │   ├── Viewer.tsx        # 照片详情、多相册归类
 │   │   ├── CloudSheet.tsx    # 云端增强面板
+│   │   ├── VersionSheet.tsx  # 版本说明弹层
 │   │   └── ...               # Sheet / PhotoGrid / Icons / TabBar 等
 │   └── lib/
 │       ├── analysis.ts       # 图像指标、哈希、指纹、分类、质量与问题检测
@@ -152,8 +160,11 @@ graph TD
 │       ├── music.ts          # 内置曲目、偏好、WebAudio 合成引擎
 │       ├── cleanup.ts        # 重复/相似分组与清理计划
 │       ├── demo.ts           # 演示相册（程序化绘制，便于离线验收）
+│       ├── version.ts        # 版本号、发布说明与运行说明
 │       └── *.test.ts         # 单元测试
-└── .cosmocode/             # 项目知识与记忆
+├── tools/
+│   └── build-doc-html.mjs    # 零依赖的 Markdown → HTML 文档生成器
+└── .cosmocode/               # 项目知识与文档（产品说明 + 截图）
 ```
 
 ## 云端增强接口

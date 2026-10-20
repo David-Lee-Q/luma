@@ -9,6 +9,7 @@
     "serve": "node server/serve.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "docs:html": "node tools/build-doc-html.mjs",
     "test": "vitest run"
   },
   "dependencies": {

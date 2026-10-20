@@ -92,3 +92,22 @@
   - 排错手法：用 Playwright 监听 `/api/*` 响应，直接打印 `keywords`/`albums`/重排 top 分数，比猜测阈值快得多
   - 长查询链连打会触发网关限流导致 `/api/text` 长时间挂起，此时界面仍在「正在检索」；自动化断言必须先等检索落地（等待提示文案不含「正在检索」）再取结果
 
+文档 HTML 生成链路
+- Date: 2026-10-20
+- Context: Agent 在把产品说明 Markdown 转成可直接浏览的 HTML 时发现
+- Category: 构建方法
+- Instructions:
+  - `npm run docs:html` 调用 `tools/build-doc-html.mjs`（零依赖），默认读 `.cosmocode/docs/产品说明.md` 并就地生成同名 `.html`
+  - 图片按相对路径 `assets/` 引用，因此 HTML 必须与 `assets/` 同目录；换目录生成时需同步拷贝截图
+  - 截图是 780x1688（390x844 @2x）的移动端视口，桌面端截图为 1920x1350
+  - 页面图片为 `loading="lazy"`，Playwright 校验前要分段滚动（每次约 0.7 屏）而非直接跳到底部，否则中部图片不触发加载、`img.complete` 永久为 false
+  - 生成器只覆盖本仓库用到的语法（标题、表格、图片、列表、引用、行内加粗与代码），新增 Markdown 语法前先补解析分支
+
+版本号注入约定
+- Date: 2026-10-20
+- Context: Agent 在新增「版本说明」入口并避免版本号两处维护时发现
+- Category: 构建方法
+- Instructions:
+  - `package.json` 的 `version` 是唯一来源，`vite.config.ts` 通过 `define.__APP_VERSION__` 注入，源码里用 `src/lib/version.ts` 的 `APP_VERSION` 读取
+  - `tsconfig.app.json` 不含 node 类型，`src/vite-env.d.ts` 负责声明 `__APP_VERSION__`
+  - 新增发布说明只改 `src/lib/version.ts` 的 `RELEASE_NOTES`，并保持首条版本号等于 `package.json` 的 version（`version.test.ts` 会校验）

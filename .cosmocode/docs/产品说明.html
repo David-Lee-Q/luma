@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luma 拾光 · 产品说明</title>
+<style>
+:root {
+  --bg: #0a0b0a;
+  --surface: #121512;
+  --surface-2: #191d18;
+  --line: rgba(244, 247, 238, 0.09);
+  --line-strong: rgba(244, 247, 238, 0.16);
+  --text: #f2f4ee;
+  --muted: #9aa198;
+  --accent: #c8f169;
+  --font-sans: "Avenir Next", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 520px at 50% -10%, rgba(200, 241, 105, 0.08), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 22px 96px;
+}
+
+header.doc-head {
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.doc-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.doc-mark i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(200, 241, 105, 0.7);
+}
+
+h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.12;
+  font-weight: 660;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 54px 0 16px;
+  padding-top: 18px;
+  font-size: 24px;
+  font-weight: 640;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 38px 0 12px;
+  font-size: 18px;
+  font-weight: 620;
+}
+
+h4 { margin: 26px 0 10px; font-size: 15.5px; }
+
+p { margin: 12px 0; color: #d9ddd4; }
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200, 241, 105, 0.32); }
+a:hover { border-bottom-color: var(--accent); }
+
+ul, ol { padding-left: 22px; color: #d9ddd4; }
+li { margin: 6px 0; }
+
+strong { color: #fff; font-weight: 640; }
+
+code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--accent);
+}
+
+blockquote {
+  margin: 18px 0;
+  padding: 14px 18px;
+  border-left: 2px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  background: rgba(200, 241, 105, 0.05);
+  color: #e6eadf;
+}
+
+blockquote p { margin: 0; }
+
+hr { margin: 44px 0; border: 0; border-top: 1px solid var(--line); }
+
+nav.toc {
+  margin: 30px 0 8px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--surface), rgba(18, 21, 18, 0.4));
+}
+nav.toc h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 26px; }
+nav.toc .toc-2 { list-style: none; margin-left: -20px; }
+nav.toc li { break-inside: avoid; }
+nav.toc a { color: #d9ddd4; border-bottom: 0; }
+nav.toc a:hover { color: var(--accent); }
+
+.table-wrap {
+  margin: 18px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th {
+  padding: 11px 14px;
+  text-align: left;
+  white-space: nowrap;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+tbody td { padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+figure.shot {
+  margin: 22px 0 30px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--surface), rgba(18, 21, 18, 0.35));
+}
+
+figure.shot img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #000;
+}
+
+figure.shot figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+footer.doc-foot {
+  margin-top: 60px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--muted-2, #6f766e);
+}
+
+@media (min-width: 1040px) {
+  .wrap { max-width: 1040px; }
+  .doc-grid { display: grid; grid-template-columns: 1fr 240px; gap: 44px; align-items: start; }
+  nav.toc { position: sticky; top: 32px; order: 2; }
+  nav.toc ol { columns: 1; }
+  .doc-body { min-width: 0; order: 1; }
+  nav.toc .toc-2 { margin-left: 0; }
+}
+
+@media (max-width: 620px) {
+  .wrap { padding: 34px 16px 72px; }
+  nav.toc ol { columns: 1; }
+  figure.shot { padding: 9px; border-radius: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc-head">
+    <span class="doc-mark"><i></i>Luma 拾光 文档</span>
+    <h1>Luma 拾光 · 产品说明</h1>
+    <p style="color:var(--muted);font-size:13px;margin:0">由 .cosmocode/docs/产品说明.md 生成 · 2026-10-20</p>
+  </header>
+  <div class="doc-grid">
+    <nav class="toc" aria-label="目录"><h2>目录</h2><ol><li class="toc-1"><a href="#s1-luma-拾光-产品说明">Luma 拾光 · 产品说明</a></li><li class="toc-2"><a href="#s2-一-产品定位">一、产品定位</a></li><li class="toc-2"><a href="#s3-二-目标用户与典型场景">二、目标用户与典型场景</a></li><li class="toc-2"><a href="#s4-三-设计原则">三、设计原则</a></li><li class="toc-2"><a href="#s5-四-界面结构">四、界面结构</a></li><li class="toc-2"><a href="#s6-五-场景走查">五、场景走查</a></li><li class="toc-2"><a href="#s29-六-功能清单">六、功能清单</a></li><li class="toc-2"><a href="#s30-七-数据与隐私">七、数据与隐私</a></li><li class="toc-2"><a href="#s31-八-实测表现">八、实测表现</a></li><li class="toc-2"><a href="#s32-九-已知边界">九、已知边界</a></li></ol></nav>
+    <div class="doc-body">
+<h1 id="s1-luma-拾光-产品说明">Luma 拾光 · 产品说明</h1>
+<blockquote>一款移动端优先的本地智能图片管家：导入照片后自动分相册、给出可解释的清理建议、用带背景音乐的幻灯片重新浏览，并可按需开启云端模型增强。</blockquote>
+<p>本文档面向产品与设计评审，逐场景说明界面、功能与交互，并附全部界面截图。截图来自内置「演示相册」（13 张程序化生成的照片，覆盖 7 个相册、1 组重复、1 组相似、3 张画质问题照片），因此无需准备素材即可复现本文所有结果。</p>
+<hr />
+<h2 id="s2-一-产品定位">一、产品定位</h2>
+<p>手机相册的典型困境是照片越攒越多、找不到、不敢删。Luma 拾光把这三件事拆成三个明确动作：<strong>自动归类</strong>让照片各归其位，<strong>清理建议</strong>让删除有据可依，<strong>沉浸幻灯片</strong>让回看重新变得愉快。</p>
+<p>所有默认能力都在浏览器内完成，照片与派生数据保存在本机 IndexedDB，原图不会离开设备。云端模型增强作为可选项存在，默认关闭，且开启后也只上传长边 640px 的压缩样张。</p>
+<h2 id="s3-二-目标用户与典型场景">二、目标用户与典型场景</h2>
+<div class="table-wrap"><table><thead><tr><th>用户</th><th>场景</th><th>期望结果</th></tr></thead><tbody><tr><td>手机照片堆积的用户</td><td>攒了几千张没整理</td><td>打开即按人物、风景、美食、夜景等自动分好</td></tr><tr><td>想清理又不敢删的用户</td><td>空间告急，不知道删哪些</td><td>给出重复、相似、模糊、曝光、低分辨率的具体清单与理由</td></tr><tr><td>有整理癖好的用户</td><td>想手动纠正归类</td><td>一张照片可同时归入多个相册，且手动结果优先于自动结果</td></tr><tr><td>爱回看的用户</td><td>睡前、通勤时翻旧照片</td><td>全屏幻灯片、随机播放、内置背景音乐</td></tr><tr><td>注重隐私的用户</td><td>不愿上传照片到云端</td><td>本地链路完整可用，云端开关由自己决定</td></tr></tbody></table></div>
+<h2 id="s4-三-设计原则">三、设计原则</h2>
+<ol><li><strong>本地优先</strong>：图像分析在浏览器 Web Worker 中完成，原图与结果留在本机。</li><li><strong>可解释</strong>：每一条清理建议都给出原因（画面模糊、曝光偏暗、短边仅 420px 等），每张照片都能看到画质分与模型点评。</li><li><strong>可撤销</strong>：删除前逐张确认，手动归类可一键「恢复自动整理」。</li><li><strong>一张照片、多个相册</strong>：相册是观察视角，允许重叠，避免被迫二选一。</li></ol>
+<h2 id="s5-四-界面结构">四、界面结构</h2>
+<p>底部四个标签构成主干：<strong>图库 / 相册 / 清理 / 幻灯片</strong>，中间的上传按钮随时可用。照片详情、相册归类、云端增强、删除确认以底部弹层呈现，保证单手可达。</p>
+<hr />
+<h2 id="s6-五-场景走查">五、场景走查</h2>
+<h3 id="s7-场景-1-首次进入">场景 1：首次进入</h3>
+<figure class="shot"><img src="assets/01-首页本地优先.png" alt="首页" loading="lazy" /><figcaption>首页</figcaption></figure>
+<p>空状态即引导页：顶部是程序化绘制的品牌插画，中部给出定位说明与功能亮点（本地分析、自动分相册、清理建议、幻灯片），底部说明隐私承诺并提供「载入演示相册」入口。右上角常驻云朵图标，是云端增强的入口。</p>
+<h3 id="s8-场景-2-导入照片">场景 2：导入照片</h3>
+<figure class="shot"><img src="assets/02-导入照片.png" alt="导入照片" loading="lazy" /><figcaption>导入照片</figcaption></figure>
+<p>点击底部加号打开导入面板。支持点击选择与拖拽投递两种方式，格式覆盖 JPG、PNG、WebP、HEIC，可一次选中多张。面板底部固定隐私说明，并保留「载入演示相册」入口，方便随时用演示数据体验。</p>
+<h3 id="s9-场景-3-本地分析">场景 3：本地分析</h3>
+<figure class="shot"><img src="assets/03-本地分析中.png" alt="本地分析中" loading="lazy" /><figcaption>本地分析中</figcaption></figure>
+<p>导入后立即开始分析，底部浮出进度条并显示已完成张数（智能分析中 n/13）。分析在 Web Worker 中执行，主线程保持可交互，因此进度条出现的同时仍可继续操作。演示相册 13 张照片的完整分析耗时约 4.5 秒。</p>
+<p>每张照片会产出 16x16 差异哈希、8x8x3 分块颜色指纹，以及亮度、对比度、饱和度、清晰度、边缘密度、色彩分布、肤色占比、暗部占比、天空占比等指标，这些指标同时服务于归类、画质评分与问题检测。</p>
+<h3 id="s10-场景-4-图库总览">场景 4：图库总览</h3>
+<figure class="shot"><img src="assets/04-图库总览.png" alt="图库总览" loading="lazy" /><figcaption>图库总览</figcaption></figure>
+<p>图库以时间倒序的网格展示全部照片。页头汇总照片数量与容量占用（本例 13 张照片 · 1.3 MB），并提供云端增强、播放全部、批量选择三个入口。</p>
+<p>网格上方是「智能整理」卡片，一行给出核心结论：6 个智能相册 · 4 条建议清理 · 可释放 146 KB，并显示分析状态（全部照片已完成画面分析）与清理建议入口。卡片下方继续展开相册分布与画质分布，把分析结果直接摊开给用户看。</p>
+<p>每张缩略图角标显示所属相册与画质分，便于快速扫读。</p>
+<h3 id="s11-场景-5-自然语言检索">场景 5：自然语言检索</h3>
+<figure class="shot"><img src="assets/12-语义检索.png" alt="语义检索" loading="lazy" /><figcaption>语义检索</figcaption></figure>
+<p>搜索框支持自然语言描述。示例中「城市夜晚的灯光」精准命中了城市夜景一张，提示条显示「语义 + 关键词匹配到 1 张」，说明本次结果来自云端语义与关键词的融合。</p>
+<p>检索链路分三层：向量相似度决定哪些照片进入候选，重排模型决定候选顺序，本地词法命中作为兜底。云端不可用时自动退化为纯关键词检索，功能不中断。</p>
+<h3 id="s12-场景-6-没有匹配">场景 6：没有匹配</h3>
+<figure class="shot"><img src="assets/13-检索无结果.png" alt="检索无结果" loading="lazy" /><figcaption>检索无结果</figcaption></figure>
+<p>「宇宙飞船」这类与图库毫无关联的查询返回 0 张，并给出「没有匹配的照片，换个说法试试」的引导。这里刻意不做「退而求其次」的全量返回，避免用户误以为全部照片都相关。</p>
+<h3 id="s13-场景-7-相册总览">场景 7：相册总览</h3>
+<figure class="shot"><img src="assets/14-相册总览.png" alt="相册总览" loading="lazy" /><figcaption>相册总览</figcaption></figure>
+<p>相册页展示 7 个自动相册（人物、风景、美食、夜景、截图、文档、日常）及各自的数量与封面拼贴：本例 6 个相册已有照片，尚未归入内容的「日常」显示「等待照片」。相册封面取该相册内画质较高的照片，视觉上一眼可辨。页面底部提示相册会自动随新照片更新。</p>
+<h3 id="s14-场景-8-相册详情">场景 8：相册详情</h3>
+<figure class="shot"><img src="assets/15-相册详情.png" alt="相册详情" loading="lazy" /><figcaption>相册详情</figcaption></figure>
+<p>进入相册后可看到该相册的全部照片，页面标注「依据画面色彩与内容自动归类，一张照片可同时属于多个相册」。右上角的播放按钮可直接以当前相册为范围启动幻灯片。</p>
+<h3 id="s15-场景-9-开启云端增强">场景 9：开启云端增强</h3>
+<figure class="shot"><img src="assets/05-云端增强开关.png" alt="云端增强开关" loading="lazy" /><figcaption>云端增强开关</figcaption></figure>
+<p>云端面板先做服务状态检测：服务端模型就绪时显示可用模型（本例 cosmo-mind-vl 与 cosmo-mind-emb），未配置时给出填写 <code>.env</code> 的指引。</p>
+<p>两个开关的语义清晰分层：<strong>启用云端增强</strong>决定是否允许照片出设备，<strong>新照片自动增强</strong>决定是否需要手动触发。开关旁直接写明「每张照片先在本机压缩到 640px 长边，再发送给视觉模型，原图始终留在设备上」。</p>
+<h3 id="s16-场景-10-增强进行中">场景 10：增强进行中</h3>
+<figure class="shot"><img src="assets/06-云端增强进行中.png" alt="云端增强进行中" loading="lazy" /><figcaption>云端增强进行中</figcaption></figure>
+<p>开启后点击增强按钮，按钮进入忙碌状态并显示剩余张数（增强剩余 n 张）。请求按 4 张一批合并发送，兼顾速度与上游调用配额；每张完成后立即写入本地，进度可见、不会因为中途失败而丢失已完成的结果。</p>
+<p>演示相册 13 张照片的云端增强耗时约 14.4 秒。</p>
+<h3 id="s17-场景-11-增强完成">场景 11：增强完成</h3>
+<figure class="shot"><img src="assets/07-云端增强完成.png" alt="云端增强完成" loading="lazy" /><figcaption>云端增强完成</figcaption></figure>
+<p>完成后按钮变为「全部照片已增强」，随时可再次打开面板查看状态。增强结果包括：一句中文描述、3 到 5 个中文关键词、AI 归类（含置信度）、一句话画质点评。</p>
+<h3 id="s18-场景-12-照片详情与模型洞察">场景 12：照片详情与模型洞察</h3>
+<figure class="shot"><img src="assets/08-照片详情与洞察.png" alt="照片详情与洞察" loading="lazy" /><figcaption>照片详情与洞察</figcaption></figure>
+<p>详情页自上而下：大图浏览区、相册标签（带来源标记，如「AI 判定」即由模型判定）、画质分与检测到的问题标签、模型洞察卡、以及收藏 / 归类相册 / 幻灯片 / 删除四个操作。</p>
+<p>示例中城市夜色.jpg 得到 54 分画质、标记「曝光偏暗」、归类为夜景，模型点评为「曝光偏暗但风格统一，可保留」。点评聚焦「这张照片是否值得保留」这一决策，与清理流程直接衔接。</p>
+<h3 id="s19-场景-13-多相册归类">场景 13：多相册归类</h3>
+<figure class="shot"><img src="assets/09-多相册归类.png" alt="多相册归类" loading="lazy" /><figcaption>多相册归类</figcaption></figure>
+<p>点击「归类相册」打开多选弹层。每行显示相册名、说明与状态标记（自动 / 已选），最多可选 3 个。手动选择会覆盖自动结果，来源标记为「手动」。</p>
+<h3 id="s20-场景-14-相册标签生效">场景 14：相册标签生效</h3>
+<figure class="shot"><img src="assets/10-多相册标签.png" alt="多相册标签" loading="lazy" /><figcaption>多相册标签</figcaption></figure>
+<p>保存后，详情页顶部会同时显示多个相册标签，本张照片因此可同时出现在「夜景」与「风景」两个相册中。标签区提供「恢复自动整理」，一键交还给自动结果。</p>
+<h3 id="s21-场景-15-删除确认">场景 15：删除确认</h3>
+<figure class="shot"><img src="assets/11-删除确认.png" alt="删除确认" loading="lazy" /><figcaption>删除确认</figcaption></figure>
+<p>任何删除都经过确认弹层，文案说明影响范围（含释放空间），默认停留等待用户判断，避免误触。</p>
+<h3 id="s22-场景-16-清理建议">场景 16：清理建议</h3>
+<figure class="shot"><img src="assets/16-清理建议.png" alt="清理建议" loading="lazy" /><figcaption>清理建议</figcaption></figure>
+<p>清理页是本产品的核心价值页面：</p>
+<ul><li>顶部大字给出<strong>预计可释放空间</strong>（演示数据 146 KB）与问题概览：4 张照片存在重复或画质问题，含 1 组重复、2 张模糊、1 张曝光异常、1 张低分辨率。</li><li>指标胶囊列出各问题的出现次数与可释放量。</li><li><strong>模型复核</strong>区块在云端增强后出现，提供「复核问题照片」入口，把本地检测结果交给模型二次判断。</li></ul>
+<h3 id="s23-场景-17-重复与画质问题清单">场景 17：重复与画质问题清单</h3>
+<figure class="shot"><img src="assets/17-待处理照片.png" alt="待处理照片" loading="lazy" /><figcaption>待处理照片</figcaption></figure>
+<p>「重复与相似」分组把画面相近的照片并排展示，自动标出「保留最佳」的一张（画质分最高），其余可一键「选中其余 N 张」；每组还附上模型对保留项的点评，帮助用户判断是否值得留。</p>
+<p>「画质问题」列表逐张给出原因标签、拍摄信息、画质分与处理建议（例如雾中山谷.jpg「画面模糊严重，细节丢失，不建议保留」）。所有选择汇聚到底部操作条，统一确认后删除。</p>
+<h3 id="s24-场景-18-幻灯片播放">场景 18：幻灯片播放</h3>
+<figure class="shot"><img src="assets/18-幻灯片播放.png" alt="幻灯片播放" loading="lazy" /><figcaption>幻灯片播放</figcaption></figure>
+<p>幻灯片支持以全部照片或单个相册为范围播放，提供 3s / 5s / 8s 三档间隔、随机播放、Ken Burns 缓慢推拉动效。顶部显示播放范围（全部照片）与当前序号（1 / 13），底部提供播放控制、随机开关、音乐按钮与进度条。</p>
+<p>交互细节：轻点画面隐藏全部控件，获得纯净观赏；左右滑动或方向键切换；<code>Esc</code> 退出；<code>M</code> 键随时开关音乐。</p>
+<h3 id="s25-场景-19-背景音乐">场景 19：背景音乐</h3>
+<figure class="shot"><img src="assets/19-背景音乐.png" alt="背景音乐" loading="lazy" /><figcaption>背景音乐</figcaption></figure>
+<p>音乐面板列出 4 首内置曲目（静谧夜航、暖阳漫步、潮汐回响、胶片时光），每首标注适用场景；当前曲目标记「当前」。面板顶部是静音按钮与音量滑杆。</p>
+<p>内置曲目由 WebAudio 实时合成，不依赖任何音频资源文件，因此首屏体积不受影响。</p>
+<h3 id="s26-场景-20-自定义音乐">场景 20：自定义音乐</h3>
+<figure class="shot"><img src="assets/20-音乐已开启.png" alt="音乐已开启" loading="lazy" /><figcaption>音乐已开启</figcaption></figure>
+<p>用户可选择本地音频作为自定义背景音乐，文件仅保存在本机 IndexedDB，不会上传到云端；选择后自动切换并显示文件名，可随时移除。音乐默认静音，需用户主动开启。</p>
+<h3 id="s27-场景-21-桌面端">场景 21：桌面端</h3>
+<figure class="shot"><img src="assets/21-桌面端图库.png" alt="桌面端图库" loading="lazy" /><figcaption>桌面端图库</figcaption></figure>
+<p>布局随宽度自适应，桌面端自动切换为多列网格并展开侧边信息，手机、平板、桌面共用一套组件。</p>
+<h3 id="s28-场景-22-版本说明">场景 22：版本说明</h3>
+<figure class="shot"><img src="assets/22-版本说明.png" alt="版本说明" loading="lazy" /><figcaption>版本说明</figcaption></figure>
+<p>图库页右上角常驻一枚信息图标，采用透明的 34px 圆形按钮与弱化色，排在云端、播放与选择之后，视觉权重最低，不干扰主要操作。</p>
+<p>点击后打开版本说明弹层：顶部是版本号与发布日期，中部列出本次更新的功能要点，底部给出四条运行说明（画面分析位置、数据存储、云端默认状态、上传内容）。版本号在构建时从 <code>package.json</code> 注入，因此界面展示的版本与实际发布版本始终一致。</p>
+<hr />
+<h2 id="s29-六-功能清单">六、功能清单</h2>
+<div class="table-wrap"><table><thead><tr><th>模块</th><th>能力</th><th>说明</th></tr></thead><tbody><tr><td>导入</td><td>点击 / 拖拽批量导入</td><td>支持 JPG、PNG、WebP、HEIC，读取 EXIF 拍摄时间</td></tr><tr><td>本地分析</td><td>指纹与画质指标</td><td>16x16 dHash、8x8x3 分块指纹、十余项画面指标，Web Worker 内完成</td></tr><tr><td>自动归类</td><td>7 个相册、多标签</td><td>每类独立打分，主类别取最高分，高分次要类别一并保留</td></tr><tr><td>手动归类</td><td>多选相册</td><td>最多 3 个，来源标记「手动」，优先级最高，可恢复自动</td></tr><tr><td>画质评分</td><td>0-100 分</td><td>综合清晰度、分辨率、曝光、对比度、饱和度</td></tr><tr><td>问题检测</td><td>重复、相似与 4 类画质问题</td><td>重复与相似基于指纹，画质问题含模糊、曝光偏暗、曝光过度、分辨率偏低</td></tr><tr><td>清理</td><td>分组与清单</td><td>自动标出保留项、支持整组选中、统一确认后删除</td></tr><tr><td>检索</td><td>关键词 + 语义</td><td>本地词法始终可用；云端开启后启用向量与重排融合</td></tr><tr><td>详情</td><td>大图与洞察</td><td>相册标签、问题标签、画质分、模型描述、关键词与点评</td></tr><tr><td>幻灯片</td><td>播放与动效</td><td>全部 / 单相册范围、三档间隔、随机、Ken Burns</td></tr><tr><td>背景音乐</td><td>内置 + 自定义</td><td>4 首实时合成曲目，可上传本地音频、调音量、默认静音</td></tr><tr><td>云端增强</td><td>描述 / 归类 / 点评</td><td>可选开启，上传 640px 压缩样张，密钥仅存服务端</td></tr><tr><td>版本说明</td><td>低调入口与弹层</td><td>图库右上角信息图标，展示版本号、发布日期、更新要点与运行说明</td></tr></tbody></table></div>
+<h2 id="s30-七-数据与隐私">七、数据与隐私</h2>
+<ul><li>原图、分析结果、归类、向量与自定义音乐全部保存在本机 IndexedDB（数据库 <code>luma-photo-db</code>）。</li><li>云端增强默认关闭；开启需要用户在面板中明确操作，开关旁即时说明上传内容与压缩策略。</li><li>云端请求经由自建 Node 代理转发，模型密钥只存在于服务端环境变量，前端代码与网络请求中都不出现密钥。</li><li>自定义背景音乐保存在本机，不会参与任何上传。</li></ul>
+<h2 id="s31-八-实测表现">八、实测表现</h2>
+<p><strong>本地归类</strong>（演示相册 13 张，主类别与配置一致，6 张获得多标签）：</p>
+<div class="table-wrap"><table><thead><tr><th>照片</th><th>主类别</th><th>置信度</th><th>相册</th></tr></thead><tbody><tr><td>城市夜色.jpg</td><td>夜景</td><td>0.96</td><td>夜景、风景</td></tr><tr><td>深夜拉面.jpg</td><td>美食</td><td>0.97</td><td>美食、夜景</td></tr><tr><td>购物小票.jpg</td><td>文档</td><td>0.97</td><td>文档</td></tr><tr><td>手机截图.png</td><td>截图</td><td>0.97</td><td>截图</td></tr><tr><td>逆光肖像.jpg</td><td>人物</td><td>0.93</td><td>人物</td></tr><tr><td>雾中山谷.jpg</td><td>风景</td><td>0.81</td><td>风景</td></tr><tr><td>落日沙丘.jpg</td><td>风景</td><td>0.87</td><td>风景、夜景</td></tr><tr><td>森林光束.jpg</td><td>风景</td><td>0.97</td><td>风景</td></tr><tr><td>海岸线.jpg</td><td>风景</td><td>0.97</td><td>风景</td></tr><tr><td>草莓蛋糕.jpg</td><td>美食</td><td>0.97</td><td>美食</td></tr><tr><td>旧时光.jpg</td><td>人物</td><td>0.97</td><td>人物</td></tr></tbody></table></div>
+<p><strong>检索</strong>（云端增强后实测）：</p>
+<div class="table-wrap"><table><thead><tr><th>查询</th><th>结果</th></tr></thead><tbody><tr><td>城市夜晚的灯光</td><td>命中 城市夜色.jpg</td></tr><tr><td>纸质凭证</td><td>命中 购物小票.jpg</td></tr><tr><td>落日</td><td>命中两张落日沙丘</td></tr><tr><td>蛋糕</td><td>命中 草莓蛋糕.jpg</td></tr><tr><td>宇宙飞船</td><td>0 张，给出无匹配引导</td></tr></tbody></table></div>
+<p><strong>性能</strong>（演示相册 13 张）：本地分析约 4.5 秒，云端增强约 14.4 秒。</p>
+<p><strong>清理</strong>（演示数据）：预计可释放 146 KB，2 组相近照片（1 组重复、1 组相似），3 张画质问题照片。</p>
+<h2 id="s32-九-已知边界">九、已知边界</h2>
+<ul><li>归类依据画面色彩与纹理统计，画面风格化明显的插画、滤镜照片可能出现标签偏多，手动归类与模型归类可覆盖。</li><li>云端增强受上游模型服务配额限制，批量处理速度取决于配额与网络状况。</li><li>自定义背景音乐的格式支持取决于浏览器解码能力，推荐 MP3 / M4A / WAV。</li><li>检索质量与云端可用性相关，云端不可用时退化为关键词检索，此时同义词类查询的召回会下降。</li></ul>
+    </div>
+  </div>
+  <footer class="doc-foot">本页面由 <code>npm run docs:html</code> 从 Markdown 生成，请勿直接编辑。</footer>
+</div>
+</body>
+</html>

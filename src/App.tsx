@@ -8,6 +8,7 @@ import { Slideshow } from './components/Slideshow'
 import { TabBar } from './components/TabBar'
 import { Toast } from './components/Toast'
 import { UploadSheet } from './components/UploadSheet'
+import { VersionSheet } from './components/VersionSheet'
 import { Viewer } from './components/Viewer'
 import { buildCleanupPlan } from './lib/cleanup'
 import { useLibrary } from './lib/library'
@@ -30,6 +31,7 @@ function Shell() {
   const [viewer, setViewer] = useState<ViewerState | null>(null)
   const [slideshow, setSlideshow] = useState<SlideshowState | null>(null)
   const [cloudOpen, setCloudOpen] = useState(false)
+  const [versionOpen, setVersionOpen] = useState(false)
 
   const cleanup = useMemo(() => buildCleanupPlan(photos), [photos])
   const allIds = useMemo(() => photos.map((photo) => photo.id), [photos])
@@ -72,6 +74,7 @@ function Shell() {
             onUpload={() => setUploadOpen(true)}
             onPlay={playAll}
             onOpenCloud={() => setCloudOpen(true)}
+            onOpenVersion={() => setVersionOpen(true)}
             onOpenPhoto={(ids, index) => setViewer({ ids, index, title: '图库' })}
           />
         ) : tab === 'albums' ? (
@@ -152,6 +155,8 @@ function Shell() {
       {uploadOpen && <UploadSheet onClose={() => setUploadOpen(false)} />}
 
       {cloudOpen && <CloudSheet onClose={() => setCloudOpen(false)} />}
+
+      {versionOpen && <VersionSheet onClose={() => setVersionOpen(false)} />}
 
       {viewer && (
         <Viewer

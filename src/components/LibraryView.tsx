@@ -12,6 +12,7 @@ import {
   IconGrid,
   IconHeart,
   IconImage,
+  IconInfo,
   IconLock,
   IconPlay,
   IconSearch,
@@ -21,6 +22,7 @@ import {
   IconWand,
 } from './Icons'
 import { PhotoGrid } from './PhotoGrid'
+import { APP_VERSION } from '../lib/version'
 
 interface LibraryViewProps {
   cleanup: CleanupPlan
@@ -28,6 +30,7 @@ interface LibraryViewProps {
   onUpload: () => void
   onPlay: () => void
   onOpenCloud: () => void
+  onOpenVersion: () => void
   onOpenPhoto: (ids: string[], index: number) => void
 }
 
@@ -37,6 +40,7 @@ export function LibraryView({
   onUpload,
   onPlay,
   onOpenCloud,
+  onOpenVersion,
   onOpenPhoto,
 }: LibraryViewProps) {
   const { photos, totalBytes, removePhotos, addDemo, enhancedCount, searchPhotos, notify } =
@@ -145,9 +149,22 @@ export function LibraryView({
     return (
       <div className="view view--library">
         <header className="page-head">
-          <span className="eyebrow">LUMA LIBRARY</span>
-          <h1 className="page-title">图库</h1>
-          <p className="page-sub">本地智能整理，让照片各归其位</p>
+          <div className="page-head-row">
+            <div>
+              <span className="eyebrow">LUMA LIBRARY</span>
+              <h1 className="page-title">图库</h1>
+              <p className="page-sub">本地智能整理，让照片各归其位</p>
+            </div>
+            <button
+              type="button"
+              className="icon-btn icon-btn--subtle"
+              onClick={onOpenVersion}
+              title={`版本说明 v${APP_VERSION}`}
+              aria-label={`版本说明 v${APP_VERSION}`}
+            >
+              <IconInfo size={17} />
+            </button>
+          </div>
         </header>
 
         <section className="hero">
@@ -277,6 +294,15 @@ export function LibraryView({
               onClick={() => (selectMode ? exitSelect() : setSelectMode(true))}
             >
               {selectMode ? '取消' : '选择'}
+            </button>
+            <button
+              type="button"
+              className="icon-btn icon-btn--subtle"
+              onClick={onOpenVersion}
+              title={`版本说明 v${APP_VERSION}`}
+              aria-label={`版本说明 v${APP_VERSION}`}
+            >
+              <IconInfo size={17} />
             </button>
           </div>
         </div>
