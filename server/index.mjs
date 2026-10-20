@@ -1,9 +1,74 @@
 import { createServer } from 'node:http'
-import { readFileSync, existsSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
+import { createReadStream, readFileSync, existsSync, statSync } from 'node:fs'
+import { dirname, extname, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+const DOCS_DIR = resolve(ROOT, '.cosmocode/docs')
+const DOC_HOME = `/docs/${encodeURIComponent('产品说明.html')}`
+
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.md': 'text/markdown; charset=utf-8',
+}
+
+function serveDoc(req, res, pathname) {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    sendJson(res, 405, { error: '仅支持 GET' })
+    return
+  }
+
+  if (pathname === '/docs' || pathname === '/docs/') {
+    res.writeHead(302, { Location: DOC_HOME })
+    res.end()
+    return
+  }
+
+  let relative
+  try {
+    relative = decodeURIComponent(pathname.slice('/docs/'.length))
+  } catch {
+    sendJson(res, 400, { error: '无效的文档路径' })
+    return
+  }
+
+  const file = resolve(DOCS_DIR, relative)
+  if (file !== DOCS_DIR && !file.startsWith(DOCS_DIR + sep)) {
+    sendJson(res, 403, { error: '禁止访问该路径' })
+    return
+  }
+
+  let stat
+  try {
+    stat = statSync(file)
+  } catch {
+    sendJson(res, 404, { error: '文档不存在' })
+    return
+  }
+  if (!stat.isFile()) {
+    sendJson(res, 404, { error: '文档不存在' })
+    return
+  }
+
+  res.writeHead(200, {
+    'Content-Type': MIME[extname(file).toLowerCase()] ?? 'application/octet-stream',
+    'Content-Length': stat.size,
+    'Cache-Control': 'no-cache',
+  })
+  if (req.method === 'HEAD') {
+    res.end()
+    return
+  }
+  createReadStream(file).pipe(res)
+}
 
 function loadEnv() {
   const envFile = resolve(ROOT, '.env')
@@ -283,6 +348,11 @@ const server = createServer(async (req, res) => {
       models: CONFIG.models,
       ratePerMinute: CONFIG.ratePerMinute,
     })
+    return
+  }
+
+  if (url.pathname === '/docs' || url.pathname.startsWith('/docs/')) {
+    serveDoc(req, res, url.pathname)
     return
   }
 

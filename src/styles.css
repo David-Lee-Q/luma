@@ -3809,3 +3809,30 @@ img {
 .version-facts + .cloud-note {
   margin-top: 14px;
 }
+
+.version-doc-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 16px;
+  min-height: 42px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+
+.version-doc-link:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.version-doc-link svg {
+  color: var(--accent);
+}

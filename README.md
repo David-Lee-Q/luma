@@ -93,6 +93,8 @@ npm run dev
 
 访问 http://localhost:4173 即可打开首页。图库顶部提供「载入演示相册」，可一键载入 13 张程序化生成的照片，快速体验分类、清理与幻灯片。
 
+产品说明的 HTML 版由同一端口提供：访问 http://localhost:4173/docs 即可阅读（也可从图库页右上角的版本说明入口进入）。
+
 ### 构建与测试
 
 ```bash
@@ -174,6 +176,7 @@ graph TD
 | 接口 | 说明 |
 | --- | --- |
 | `GET /api/health` | 返回是否已配置密钥与各模型名称 |
+| `GET /docs/*` | 只读提供 `.cosmocode/docs` 下的产品说明与截图，`/docs` 直达 HTML 文档 |
 | `POST /api/vision` | 多图视觉理解：描述、关键词、归类、画质建议 |
 | `POST /api/text` | 文本任务：检索语句拆解为关键词与候选类别 |
 | `POST /api/embeddings` | 文本向量，用于语义检索 |

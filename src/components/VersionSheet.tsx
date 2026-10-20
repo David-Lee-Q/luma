@@ -1,4 +1,4 @@
-import { IconCheck, IconClose, IconLock, IconSparkles } from './Icons'
+import { IconCheck, IconClose, IconFile, IconLock, IconSparkles } from './Icons'
 import { Sheet } from './Sheet'
 import { APP_NAME, APP_TAGLINE, APP_VERSION, CURRENT_RELEASE, TECH_FACTS } from '../lib/version'
 
@@ -57,6 +57,11 @@ export function VersionSheet({ onClose }: { onClose: () => void }) {
         <IconLock size={14} />
         照片、分析结果与自定义音乐都保存在本机浏览器，版本更新不会上传或删除它们。
       </p>
+
+      <a className="version-doc-link" href="/docs" target="_blank" rel="noreferrer">
+        <IconFile size={15} />
+        查看完整产品说明
+      </a>
     </Sheet>
   )
 }

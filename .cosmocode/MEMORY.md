@@ -111,3 +111,12 @@
   - `package.json` 的 `version` 是唯一来源，`vite.config.ts` 通过 `define.__APP_VERSION__` 注入，源码里用 `src/lib/version.ts` 的 `APP_VERSION` 读取
   - `tsconfig.app.json` 不含 node 类型，`src/vite-env.d.ts` 负责声明 `__APP_VERSION__`
   - 新增发布说明只改 `src/lib/version.ts` 的 `RELEASE_NOTES`，并保持首条版本号等于 `package.json` 的 version（`version.test.ts` 会校验）
+产品说明的在线访问路径
+- Date: 2026-10-20
+- Context: Agent 在让 HTML 产品说明可从预览端口直接阅读时发现
+- Category: 运维部署
+- Instructions:
+  - `server/index.mjs` 以只读方式提供 `/docs/*`，映射到 `.cosmocode/docs`，`/docs` 直接 302 到 HTML 文档
+  - `vite.config.ts` 的 `apiProxy` 同时代理 `/api` 与 `/docs` 到 8787，因此预览端口 4173 上可直接访问 `/docs`
+  - 改 `server/index.mjs` 或 `vite.config.ts` 后必须重启 `npm run serve`，否则路由与代理不生效
+  - 路径穿越已做 resolve + 前缀校验，`/docs/..%2f..%2f.env` 一类请求返回 403
